@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "751882454279",
+    "firebase_url": "https://qrsystem-aff85.firebaseio.com",
+    "project_id": "qrsystem-aff85",
+    "storage_bucket": "qrsystem-aff85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751882454279:android:a880be9b8960c6aab8b1a2",
+        "android_client_info": {
+          "package_name": "com.joovlly.QRAdminFlutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751882454279-5pa6lj2jta7rr4rq65bojpemfisp5vvk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlX8lw63_HnS2k5E53OtgoK9_1e-j8qqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751882454279-5pa6lj2jta7rr4rq65bojpemfisp5vvk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
