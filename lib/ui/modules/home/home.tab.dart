@@ -21,7 +21,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
   @override
   void initState() {
     refreshQR();
-//    refresher();
+    refresher();
     super.initState();
   }
 
