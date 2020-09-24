@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:QRAdminFlutter/bloc/qr/qr_bloc.dart';
 import 'package:QRAdminFlutter/ui/style/app.colors.dart';
 import 'package:QRAdminFlutter/utils/app.localization.dart';
@@ -18,8 +20,17 @@ class _HomeTabPageState extends State<HomeTabPage> {
 
   @override
   void initState() {
-   BlocProvider.of<QrBloc>(context).add(RefreshQR());
+    refreshQR();
+//    refresher();
     super.initState();
+  }
+
+  refresher() {
+    const duration = const Duration(seconds: 15);
+    return  Timer.periodic(
+      duration,
+          (Timer timer) => refreshQR(),
+    );
   }
 
   @override
@@ -89,4 +100,6 @@ class _HomeTabPageState extends State<HomeTabPage> {
   void refreshQR() {
     BlocProvider.of<QrBloc>(context).add(RefreshQR());
   }
+
+
 }

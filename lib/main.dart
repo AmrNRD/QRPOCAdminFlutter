@@ -16,14 +16,17 @@ import 'bloc/settings/settings_bloc.dart';
 import 'bloc/user/user_bloc.dart';
 import 'data/models/user_model.dart';
 import 'data/repositories/user_repository.dart';
+import 'utils/setup.dart';
 
 
 void main() => runApp(Root());
 
 class Root extends StatefulWidget {
   // This widget is the root of your application.
-  static String fontFamily;
+  static String fontFamily= AppFonts.fontSF;
   static Locale locale;
+  static BuildContext appContext;
+  static String firebaseToken;
   static ThemeMode themeMode=ThemeMode.system;
   static User user;
 
@@ -38,11 +41,17 @@ class _RootState extends State<Root> {
 
   @override
   void initState() {
+    setUp();
     super.initState();
+  }
+
+  Future<void> setUp() async {
+    Root.appContext=context;
+
     settingsBloc=SettingsBloc(SettingsDataRepository());
     settingsBloc.add(LoadSettings());
-    Root.fontFamily = AppFonts.fontSF;
 
+    Root.firebaseToken =await SetUp.setUpFirebaseConfig(context);
   }
 
   changeFont(Locale locale){
@@ -69,6 +78,7 @@ class _RootState extends State<Root> {
         listener: (context,state){
           if (state is SettingsLoaded) {
             setState(() {
+              Root.appContext=context;
               Root.themeMode=state.themeMode;
               Root.locale=state.locale;
               changeFont(Root.locale);

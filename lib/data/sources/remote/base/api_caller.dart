@@ -45,6 +45,9 @@ class APICaller {
       final res = await http.get(Env.baseUrl + urlExtension, headers: headers).timeout(const Duration(seconds: 10), onTimeout: () {
         throw RequestTimeOutException("Poor internet or no internet connectivity");
       });
+      debugPrint('GET '+Env.baseUrl + urlExtension);
+      debugPrint('Status Code: '+res.statusCode.toString());
+      debugPrint(res.body.toString());
       var dataRetrived = returnResponse(res);
       return dataRetrived;
     } on SocketException {
@@ -65,12 +68,15 @@ class APICaller {
     } else {
       headers = APICaller.headers;
     }
-
     if (body == null) {
       body = {};
     }
 
     final res = await http.post(Env.baseUrl + urlExtension, headers: headers, body: json.encode(body));
+    debugPrint('POST '+Env.baseUrl + urlExtension);
+    debugPrint('Body: '+body.toString());
+    debugPrint('Status Code: '+res.statusCode.toString());
+    debugPrint(res.body.toString());
     var dataRetrived = returnResponse(res);
     return dataRetrived;
   }
@@ -93,11 +99,13 @@ class APICaller {
       body = {};
     }
 
-    final res = await http
-        .put(Env.baseUrl + urlExtension, headers: headers, body: json.encode(body))
-        .timeout(const Duration(seconds: 10), onTimeout: () {
+    final res = await http.put(Env.baseUrl + urlExtension, headers: headers, body: json.encode(body)).timeout(const Duration(seconds: 10), onTimeout: () {
       throw RequestTimeOutException("Poor internet or no internet connectivity, Please try again.");
     });
+    debugPrint('PUT '+Env.baseUrl + urlExtension);
+    debugPrint('Body: '+body.toString());
+    debugPrint('Status Code: '+res.statusCode.toString());
+    debugPrint(res.body.toString());
     var dataRetrived = returnResponse(res);
     return dataRetrived;
   }
@@ -119,7 +127,9 @@ class APICaller {
 
     final res = await http.delete(Env.baseUrl + urlExtension, headers: headers).timeout(const Duration(seconds: 10), onTimeout: () {throw RequestTimeOutException("Poor internet or no internet connectivity, Please try again.");});
     var dataRetrived = returnResponse(res);
-
+    debugPrint('DELETE '+Env.baseUrl + urlExtension);
+    debugPrint('Status Code: '+res.statusCode.toString());
+    debugPrint(res.body.toString());
     return dataRetrived;
   }
 

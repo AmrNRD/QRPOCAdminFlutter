@@ -7,6 +7,8 @@ import '../../data/repositories/user_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
+import '../../main.dart';
+
 part 'user_event.dart';
 part 'user_state.dart';
 
@@ -28,6 +30,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       } else if (event is LoginUser) {
         final User user = await userRepository.login(event.email, event.password, event.platform, event.firebaseToken);
         yield UserLoaded(user);
+      }else if (event is LogoutUser) {
+        Root.user = await userRepository.logout();
+        yield UserLoggedOut();
       }
     } catch (error) {
       debugPrint("Error happened in UserBloc of type ${error.runtimeType} with output ' ${error.toString()} '");

@@ -11,6 +11,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../env.dart';
 import '../../../../utils/app.localization.dart';
@@ -53,6 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
     firebaseMessaging.getToken().then((String token) {
       assert(token != null);
       firebaseToken = token;
+      SharedPreferences.getInstance().then((sharedPreferences) => sharedPreferences.setString("firebaseToken", firebaseToken));
     });
 
     super.initState();
@@ -131,8 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void onLogin() {
-    //todo:remove this in deployment
-    onSkip();
+
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
 

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:QRAdminFlutter/data/repositories/qr_repository.dart';
 import 'package:QRAdminFlutter/data/sources/remote/base/app.exceptions.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 
 part 'qr_event.dart';
@@ -16,8 +17,10 @@ class QrBloc extends Bloc<QrEvent, QrState> {
     yield QrLoading();
    try{
      if(event is RefreshQR){
+       debugPrint("RefreshQR");
        String qrCode=await qrRepository.updateQR();
-       QrLoaded(qrCode);
+       yield QrLoaded(qrCode);
+       debugPrint("Out RefreshQR Event");
      }
    }catch(error){
      if(error is UnauthorisedException){

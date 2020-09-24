@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:QRAdminFlutter/ui/common/skeleton.dart';
 import 'package:QRAdminFlutter/ui/style/app.colors.dart';
 import 'package:QRAdminFlutter/ui/style/app.dimens.dart';
@@ -145,6 +147,8 @@ class ImageProcessor {
           )),
     );
   }
+
+
 
   double screenAwareSize(double size, BuildContext context) {
     double drawingHeight =
