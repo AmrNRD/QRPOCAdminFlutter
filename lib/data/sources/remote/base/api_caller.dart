@@ -55,7 +55,7 @@ class APICaller {
     }
   }
 
-  static Future<dynamic> postData(String urlExtension, {Map body, bool authorizedHeader = false}) async {
+  static Future<dynamic> postData(String urlExtension, {Map body, bool authorizedHeader = false,outerAPI=false}) async {
     Map<String, String> headers;
     if (authorizedHeader) {
       final prefs = await SharedPreferences.getInstance();
@@ -72,7 +72,7 @@ class APICaller {
       body = {};
     }
 
-    final res = await http.post(Env.baseUrl + urlExtension, headers: headers, body: json.encode(body));
+    final res = await http.post(outerAPI?urlExtension:Env.baseUrl + urlExtension, headers: headers, body: json.encode(body));
     debugPrint('POST '+Env.baseUrl + urlExtension);
     debugPrint('Body: '+body.toString());
     debugPrint('Status Code: '+res.statusCode.toString());

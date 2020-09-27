@@ -15,7 +15,7 @@ class QrDataRepository extends QrRepository{
   Future<String> updateQR() async{
 
     final extractedData = await APICaller.postData("/refresh-qr",body: {'firebase_token':Root.firebaseToken}, authorizedHeader: true);
-    String qrCode=extractedData["device"]["qr_code"];
+    String qrCode=extractedData["device"]["qr_code"]+getRandomString(5);
     return qrCode;
   }
 
